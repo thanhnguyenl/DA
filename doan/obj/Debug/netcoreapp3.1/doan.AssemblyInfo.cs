@@ -11,11 +11,12 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.AspNetCore.Identity.UI.UIFrameworkAttribute("Bootstrap4")]
 [assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("aspnet-doan-0176440b-4339-40a5-b843-2e0c827c895e")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("doan")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+afcb8e987580e6a870ccfc3a13b549c57ab46169")]
 [assembly: System.Reflection.AssemblyProductAttribute("doan")]
 [assembly: System.Reflection.AssemblyTitleAttribute("doan")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
