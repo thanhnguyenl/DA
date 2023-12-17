@@ -33,16 +33,23 @@ CREATE TABLE MATHANG(
 	MaDM int not null foreign key(MaDM) references DANHMUC(MaDM),
 	LuotXem int default 0,
 	LuotMua int default 0
-)  
+) 
+GO
+
+CREATE TABLE CHUCVU(
+	MaCV int primary key identity(1,1),
+	Ten nvarchar(100) not null,
+	HeSo float default 1.0
+) 
 GO
 
 CREATE TABLE NHANVIEN(
 	MaNV int primary key identity(1,1),
 	Ten nvarchar(100) not null,
+	MaCV int not null foreign key(MaCV) references CHUCVU(MaCV),
 	DienThoai varchar(20),
 	Email varchar(255),
-	MatKhau varchar(255),
-	TenCV nvarchar(50),
+	MatKhau varchar(255)	
 ) 
 GO
 
@@ -55,6 +62,16 @@ CREATE TABLE KHACHHANG(
 ) 
 GO
 
+CREATE TABLE DIACHI(	
+	MaDC int primary key identity(1,1),
+	MaKH int not null foreign key(MaKH) references KHACHHANG(MaKH),
+	DiaChi nvarchar(100) not null,
+	PhuongXa varchar(20) default N'Đông Xuyên',
+	QuanHuyen varchar(50) default N'TP. Long Xuyên',
+	TinhThanh varchar(50) default N'An Giang',
+	MacDinh int default 1	
+) 
+GO
 
 CREATE TABLE HOADON(
 	MaHD int primary key identity(1,1),
@@ -98,18 +115,25 @@ INSERT INTO MATHANG(Ten,MoTa,GiaGoc,GiaBan,SoLuong,HinhAnh,MaDM,LuotXem,LuotMua)
 INSERT INTO MATHANG(Ten,MoTa,GiaGoc,GiaBan,SoLuong,HinhAnh,MaDM,LuotXem,LuotMua) VALUES(N'Bàn Trang Điểm - Bàn Makeup phong cách bắc âu',N'bàn dạng kéo hiện đại siêu yêu, kích thước 50x100',3000000,2000000,30,'10.jpg',4,0,0);
 INSERT INTO MATHANG(Ten,MoTa,GiaGoc,GiaBan,SoLuong,HinhAnh,MaDM,LuotXem,LuotMua) VALUES(N'Kệ sách để bàn bằng gỗ đa năng',N'Kệ sách gỗ để bàn Kệ đa năng mini giá sách gỗ màu trắng lắp ghép dễ dàng tiện lợi. Kích thước: Cao 34, rộng có thể kéo chỉnh từ 30 đến 60cm, sâu 17cm',90000,60000,25,'11.jpg',4,0,0);
 INSERT INTO MATHANG(Ten,MoTa,GiaGoc,GiaBan,SoLuong,HinhAnh,MaDM,LuotXem,LuotMua) VALUES(N'Đèn ngủ để bàn',N'Đèn ngủ để bàn có hệ thống tăng giảm ánh sáng, đèn có chiêu cao 50cm, chao đèn có bán kính rộng 25cm, thân đèn làm bằng innox mạ sơn tĩnh điện.',300000,1500000,50,'12.jpg',4,0,0);
-
--- Dữ liệu bảng KHACHHANG
-INSERT INTO NHANVIEN(Ten,DienThoai,Email,MatKhau) VALUES(N'Lê Ngọc Thanh','0354343545','kh01@gmail.com','AQAAAAEAACcQAAAAEEW06qVrK1s2lD2mH93UknTgMXVqK0Gi/7bB7sR343qKL0+WTIxGOXcZ3i8MBMIjXA==');
+-- Dữ liệu bảng CHUC_VU
+INSERT INTO CHUCVU(Ten) VALUES(N'Quản lý');
+INSERT INTO CHUCVU(Ten) VALUES(N'Nhân viên thu ngân');
+INSERT INTO CHUCVU(Ten) VALUES(N'Nhân viên kho');
 
 -- Dữ liệu bảng NHANVIEN
---INSERT INTO NHANVIEN(Ten,DienThoai,Email,MatKhau,TenCV) VALUES(N'Nguyễn Phước Tân','0909456789','nptan@gmail.com','Aa@12345',N'Quản lý');
---INSERT INTO NHANVIEN(Ten,DienThoai,Email,MatKhau,TenCV) VALUES(N'Dương Thị Mỹ Thuận','0988778899','dtmthuan@gmail.com','Aa@12345',N'Nhân viên thu ngân');
---INSERT INTO NHANVIEN(Ten,DienThoai,Email,MatKhau,TenCV) VALUES(N'Trần Huỳnh Sơn','0903123123','thson@gmail.com','Aa@12345',N'Nhân viên kho');
---INSERT INTO NHANVIEN(Ten,DienThoai,Email,MatKhau,TenCV) VALUES(N'Lê Ngọc Thanh','0913454544','admin@gmail.com','Aa@12345',N'Quản trị viên');
+INSERT INTO NHANVIEN(Ten,MaCV,DienThoai,Email,MatKhau) VALUES(N'Nguyễn Phước Tân',1,'0909456789','nptan@gmail.com','202cb962ac59075b964b07152d234b70');
+--INSERT INTO NHANVIEN(Ten,MaCV,DienThoai,Email,MatKhau) VALUES(N'Dương Thị Mỹ Thuận',2,'0988778899','dtmthuan@gmail.com','202cb962ac59075b964b07152d234b70');
+--INSERT INTO NHANVIEN(Ten,MaCV,DienThoai,Email,MatKhau) VALUES(N'Trần Huỳnh Sơn',3,'0903123123','thson@gmail.com','202cb962ac59075b964b07152d234b70');
+--INSERT INTO NHANVIEN(Ten,MaCV,DienThoai,Email,MatKhau) VALUES(N'Lê Ngọc Thanh',2,'0913454544','lnthanh@gmail.com','202cb962ac59075b964b07152d234b70');
+
+-- Dữ liệu bảng KHACHHANG
+--INSERT INTO KHACHHANG(Ten,DienThoai,Email,MatKhau) VALUES(N'Lê Ngọc Sơn','0998234544','l','Aa@12345');
+
+-- Dữ liệu bảng DIACHI
+INSERT INTO DIACHI(MaKH,DiaChi,PhuongXa,QuanHuyen,TinhThanh,MacDinh) VALUES(1,N'18 Ung Văn Khiêm',N'P Đông Xuyên',N'TP Long Xuyên',N'An Giang',1);
 
 -- Dữ liệu bảng HOADON
---INSERT INTO HOADON(TongTien,MaKH,TrangThai) VALUES(2780000,1,0);
+--INSERT INTO HOADON(TongTien,MaKH,TrangThai) VALUES(70000,1,0);
 
 
 -- Dữ liệu bảng CTHOA_DON
@@ -123,7 +147,6 @@ SELECT * FROM KHACHHANG;
 SELECT * FROM HOADON;
 SELECT * FROM CTHOADON;
 SELECT * FROM NHANVIEN;
-SELECT * FROM CUAHANG;
-
+SELECT * FROM DIACHI;
 
 
