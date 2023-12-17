@@ -1,0 +1,41 @@
+﻿@model IEnumerable<mvc.Models.Danhmuc>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<form asp-action="DanhmucsByKeyWord">
+    <div class="row">
+        <div class="col"><input type="text" name="keyword" class="form-control" /></div>
+        <div class="col"><input type="submit" value="Tìm" class="btn btn-info" /></div>
+    </div>
+</form>
+<h1>DANH SÁCH DANH MỤC</h1>
+
+<p>
+    <a asp-action="Create">Thêm mới</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Ten)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ten)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.MaDm">Chỉnh sửa</a> |
+                <a asp-action="Details" asp-route-id="@item.MaDm">Chi tiết</a> |
+                <a asp-action="Delete" asp-route-id="@item.MaDm">Xóa</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

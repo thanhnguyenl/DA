@@ -1,0 +1,57 @@
+﻿@model IEnumerable<mvc.Models.Cthoadon>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>CHI TIẾT HÓA ĐƠN</h1>
+
+<p>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DonGia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoLuong)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ThanhTien)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaHdNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaMhNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DonGia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoLuong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThanhTien)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaHdNavigation.MaHd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaMhNavigation.Ten)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.MaCthd">Chi tiết</a> |
+                <a asp-controller="Hoadons" asp-action="index">Quay lại danh sách hóa đơn</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

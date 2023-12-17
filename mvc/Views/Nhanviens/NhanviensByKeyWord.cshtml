@@ -1,0 +1,67 @@
+﻿@model IEnumerable<mvc.Models.Nhanvien>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<form asp-action="NhanviensByKeyWord">
+    <div class="row">
+        <div class="col"><input type="text" name="keyword" class="form-control" /></div>
+        <div class="col"><input type="submit" value="Tìm" class="btn btn-info" /></div>
+    </div>
+</form>
+
+<h1>DANH SÁCH NHÂN VIÊN</h1>
+
+<p>
+    <a asp-action="Create">Thêm mới</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Ten)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DienThoai)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MatKhau)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaCvNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ten)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DienThoai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MatKhau)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaCvNavigation.Ten)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.MaNv">Chỉnh sửa</a> |
+                    <a asp-action="Details" asp-route-id="@item.MaNv">Chi tiết</a> |
+                    <a asp-action="Delete" asp-route-id="@item.MaNv">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
